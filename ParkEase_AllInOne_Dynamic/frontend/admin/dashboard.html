@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin Dashboard — ParkEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body id="adminDashboardView">
+  <!-- Auth Guard Gate (displayed if not logged in as Admin) -->
+  <div id="adminAuthGate"></div>
+
+  <!-- Main Admin Content (hidden if not admin) -->
+  <div id="adminMainWrap">
+    <nav class="navbar navbar-custom">
+      <div class="container-fluid px-3 px-lg-4 d-flex justify-content-between align-items-center">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+          <span class="brand-mark bg-dark text-white"><i class="bi bi-shield-lock-fill"></i></span>
+          <span class="brand-text">ParkEase <span class="badge bg-primary text-white ms-1 fs-6">Admin Console</span></span>
+        </a>
+        <div class="ms-auto d-flex align-items-center gap-2">
+          <span class="d-none d-md-inline-block small text-muted-custom me-2">
+            <i class="bi bi-person-badge me-1"></i> <strong id="adminUserEmail">admin@parkease.com</strong>
+          </span>
+          <a class="btn btn-outline-custom btn-sm" href="../backend-dashboard.html"><i class="bi bi-database-gear me-1"></i>Database Explorer</a>
+          <a class="btn btn-outline-custom btn-sm" href="../dashboard.html"><i class="bi bi-car-front me-1"></i>Driver View</a>
+          <button class="btn btn-outline-danger btn-sm" onclick="SPMS.logout().then(() => window.location.href='../index.html')">Logout</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <aside class="col-lg-2 sidebar p-3">
+          <div class="small-label text-secondary mb-3 px-2 text-uppercase fw-bold" style="letter-spacing:1px">Admin Menu</div>
+          <a class="active" href="dashboard.html"><i class="bi bi-speedometer2"></i> Operations Console</a>
+          <a href="../backend-dashboard.html"><i class="bi bi-database-gear"></i> Database Explorer</a>
+          <a href="../dashboard.html"><i class="bi bi-car-front"></i> Driver Dashboard View</a>
+          <a href="../parking.html"><i class="bi bi-p-square"></i> Live Parking Grid</a>
+          <a href="../history.html"><i class="bi bi-calendar-check"></i> All Bookings</a>
+          <hr class="border-secondary">
+          <a href="#" onclick="SPMS.logout().then(() => window.location.href='../index.html')"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </aside>
+
+        <main class="col-lg-10 p-3 p-lg-4">
+          <div class="alert alert-soft py-2 px-3 mb-4 d-flex justify-content-between align-items-center">
+            <div>
+              <i class="bi bi-shield-check text-primary me-2"></i>
+              <strong>Admin Operations Console:</strong> Viewing facility metrics, revenue, and system-wide occupancy.
+            </div>
+            <a href="../dashboard.html" class="btn btn-sm btn-outline-primary">Switch to Driver Account View →</a>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <div class="small-label">Operations Center</div>
+              <h2 class="fw-bold mb-1">Parking Facility Overview</h2>
+              <p class="text-muted-custom mb-0">Real-time statistics across all 3 parking facilities in Indore.</p>
+            </div>
+            <span class="badge badge-soft badge-available py-2 px-3">
+              <i class="bi bi-circle-fill text-success me-1" style="font-size:8px"></i> System Online & Synced
+            </span>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-sm-6 col-xl-3">
+              <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-p-square"></i></div>
+                <div id="adminTotalSlots" class="stat-value">...</div>
+                <div class="text-muted-custom">Total Registered Slots</div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-car-front"></i></div>
+                <div id="adminOccupiedSlots" class="stat-value">...</div>
+                <div class="text-muted-custom">Currently Occupied</div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-calendar2-check"></i></div>
+                <div id="adminDailyBookings" class="stat-value">...</div>
+                <div class="text-muted-custom">Today's Bookings</div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="stat-card">
+                <div class="stat-icon"><i class="bi bi-currency-rupee"></i></div>
+                <div id="adminDailyRevenue" class="stat-value">...</div>
+                <div class="text-muted-custom">Today's Revenue</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <div class="panel">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="fw-bold mb-0">Occupancy Trend (Today)</h5>
+                  <span class="small text-muted-custom">Hourly Slots In Use</span>
+                </div>
+                <canvas id="occupancyChart" height="110"></canvas>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="panel">
+                <h5 class="fw-bold mb-3">Facility & Zone Status</h5>
+                <div id="adminZoneStatusList">
+                  <div class="text-center py-4 text-muted">Loading zone statuses...</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="table-card">
+                <div class="p-3 p-lg-4 border-bottom d-flex justify-content-between align-items-center">
+                  <h5 class="fw-bold mb-0">System-Wide Reservations (Live Database)</h5>
+                  <button class="btn btn-sm btn-outline-custom" onclick="window.print()">
+                    <i class="bi bi-printer me-1"></i> Print / Export
+                  </button>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-middle">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Booking Code</th>
+                        <th>Driver / User</th>
+                        <th>Facility</th>
+                        <th>Slot</th>
+                        <th>Start Time</th>
+                        <th>Amount Paid</th>
+                        <th>Live Status</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adminReservationsTbody">
+                      <tr><td colspan="7" class="text-center py-4 text-muted">Loading live reservations...</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

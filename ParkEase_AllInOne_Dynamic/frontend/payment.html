@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Payment — ParkEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-custom">
+    <div class="container py-2 d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-mark"><i class="bi bi-p-square-fill"></i></span>
+        <span class="brand-text">ParkEase</span>
+      </a>
+      <div id="navUserArea" class="d-flex gap-2">
+        <a href="booking.html" class="btn btn-outline-custom btn-sm">← Back to Details</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <div class="small-label">Checkout</div>
+      <h1 class="fw-bold mt-2 mb-2">Complete payment</h1>
+      <p class="text-muted-custom mb-0">Secure demo payment gateway with instant QR pass issuance.</p>
+    </div>
+  </section>
+
+  <main class="container py-4">
+    <div id="paymentMainWrap" class="row g-4 justify-content-center">
+      <div class="col-lg-7">
+        <div class="panel">
+          <h5 class="fw-bold mb-4">Choose Payment Method</h5>
+          <div class="row g-3 mb-4">
+            <div class="col-md-6">
+              <label class="border rounded-4 p-3 w-100 d-flex gap-3 align-items-center cursor-pointer">
+                <input id="methodUpi" type="radio" name="paymentMethod" checked>
+                <span><i class="bi bi-phone fs-4 text-primary-custom"></i></span>
+                <span>
+                  <strong>UPI Payment</strong>
+                  <small class="d-block text-muted-custom">Google Pay / PhonePe / Paytm</small>
+                </span>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <label class="border rounded-4 p-3 w-100 d-flex gap-3 align-items-center cursor-pointer">
+                <input id="methodCard" type="radio" name="paymentMethod">
+                <span><i class="bi bi-credit-card fs-4 text-primary-custom"></i></span>
+                <span>
+                  <strong>Debit / Credit Card</strong>
+                  <small class="d-block text-muted-custom">Visa / Mastercard / RuPay</small>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div id="upiDetailsGroup">
+            <label class="form-label fw-semibold">UPI Virtual ID</label>
+            <input id="upiId" class="form-control mb-3" placeholder="e.g. aarav@okhdfcbank" value="aarav@upi">
+            <div class="small text-muted-custom mb-3">
+              <i class="bi bi-info-circle me-1"></i> Demo tip: Any valid UPI ID like <code>yourname@upi</code> confirms instantly.
+            </div>
+          </div>
+
+          <div id="cardDetailsGroup" class="d-none">
+            <div class="mb-3">
+              <label class="form-label fw-semibold">Card Number</label>
+              <input class="form-control" placeholder="4111 •••• •••• 1111" value="4111 2222 3333 4444">
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label fw-semibold">Expiry Date</label>
+                <input class="form-control" placeholder="MM/YY" value="12/28">
+              </div>
+              <div class="col-6">
+                <label class="form-label fw-semibold">CVV</label>
+                <input class="form-control" type="password" placeholder="•••" value="123">
+              </div>
+            </div>
+          </div>
+
+          <button id="payNowBtn" class="btn btn-primary-custom btn-lg w-100 mt-3">
+            Pay & Confirm Booking
+          </button>
+          <p class="text-center small text-muted-custom mt-3 mb-0">
+            <i class="bi bi-shield-lock-fill text-success me-1"></i> 256-bit encrypted transaction • Instant QR pass
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="panel sticky-lg-top" style="top:92px">
+          <h5 class="fw-bold mb-3">Order Summary</h5>
+          <div id="paymentOrderSummary" class="invoice-box">
+            <!-- Dynamically populated by app.js -->
+          </div>
+          <div class="alert alert-soft mt-3 p-3 small mb-0">
+            <i class="bi bi-clock-history me-1"></i> Slot reserved for 10 minutes. Complete payment to secure your spot.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ParkEase — Smart Parking Management System</title>
+  <meta name="description" content="ParkEase Smart Parking Management System — unified frontend & backend with live slot availability, online bookings, and instant QR entry passes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="landingHero">
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container py-2">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <span class="brand-mark"><i class="bi bi-p-square-fill"></i></span>
+      <span class="brand-text">ParkEase</span>
+    </a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="parking.html">Find Parking</a></li>
+        <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-car-front me-1"></i>Driver View</a></li>
+        <li class="nav-item"><a class="nav-link" href="admin/dashboard.html"><i class="bi bi-shield-lock me-1"></i>Admin Console</a></li>
+        <li class="nav-item"><a class="nav-link" href="backend-dashboard.html"><i class="bi bi-database-gear me-1"></i>DB Explorer</a></li>
+        <li class="nav-item ms-lg-2" id="navUserArea">
+          <a class="btn btn-outline-custom btn-sm" href="login.html">Login</a>
+          <a class="btn btn-primary-custom btn-sm ms-1" href="register.html">Register</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <span id="landingLiveSlotsBadge" class="badge badge-soft bg-soft text-primary mb-3">
+          <i class="bi bi-circle-fill text-success me-1" style="font-size:8px"></i> Live Inventory Online Across 3 Facilities
+        </span>
+        <h1 class="hero-title mb-4">Park smarter.<br>Arrive stress-free.</h1>
+        <p class="hero-subtitle mb-4">A unified Smart Parking Management System for checking live slot occupancy, booking guaranteed parking in advance, and scanning contactless QR passes upon arrival.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="parking.html" class="btn btn-primary-custom btn-lg">Find a Parking Slot <i class="bi bi-arrow-right ms-1"></i></a>
+          <a href="register.html" class="btn btn-outline-custom btn-lg">Create Free Account</a>
+        </div>
+        <div class="d-flex flex-wrap gap-4 mt-4 text-muted-custom">
+          <span><i class="bi bi-check-circle-fill text-success me-1"></i> Real-time slot status</span>
+          <span><i class="bi bi-check-circle-fill text-success me-1"></i> Instant UPI / Card checkout</span>
+          <span><i class="bi bi-check-circle-fill text-success me-1"></i> Contactless QR pass</span>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="hero-card">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div><div class="small-label">Featured Location</div><div class="fw-bold fs-5">City Center Parking</div></div>
+            <span class="badge badge-soft badge-available">Zone A • Ground Floor</span>
+          </div>
+          <div class="map-placeholder" style="min-height:330px">
+            <div class="parking-lot"></div>
+            <div class="map-spot avail" style="left:17%;top:19%">A01</div>
+            <div class="map-spot occ" style="left:38%;top:19%">A02</div>
+            <div class="map-spot avail" style="left:59%;top:19%">A03</div>
+            <div class="map-spot res" style="left:80%;top:19%">A04</div>
+            <div class="map-spot avail" style="left:17%;top:57%">A05</div>
+            <div class="map-spot occ" style="left:38%;top:57%">A06</div>
+            <div class="map-spot avail" style="left:59%;top:57%">A07</div>
+            <div class="map-spot avail" style="left:80%;top:57%">A08</div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-3 small text-muted-custom">
+            <span><i class="bi bi-geo-alt-fill text-danger me-1"></i> Main Gate, MG Road, Indore</span>
+            <a href="parking.html" class="fw-bold text-primary-custom">View Live Grid →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="features">
+  <div class="container">
+    <div class="text-center max-w-700 mx-auto mb-5">
+      <div class="small-label text-primary-custom">Core Capabilities</div>
+      <h2 class="section-title mt-2">Everything drivers and parking operators need</h2>
+      <p class="text-muted-custom">Engineered according to the Software Requirements Specification (SRS) and System Design Document (SDD).</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <div class="feature-icon mb-3"><i class="bi bi-geo-alt-fill"></i></div>
+          <h5 class="fw-bold">Real-Time Slot Discovery</h5>
+          <p class="text-muted-custom mb-0">Browse parking locations across Indore, filter by vehicle type (Car, Bike, EV), and inspect live occupancy status.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <div class="feature-icon mb-3"><i class="bi bi-clock-history"></i></div>
+          <h5 class="fw-bold">Advance Reservation</h5>
+          <p class="text-muted-custom mb-0">Book parking slots up to 30 days in advance with guaranteed 10-minute hold intervals and conflict-free allocation.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <div class="feature-icon mb-3"><i class="bi bi-qr-code"></i></div>
+          <h5 class="fw-bold">Contactless QR Entry</h5>
+          <p class="text-muted-custom mb-0">Generate encrypted digital passes instantly after confirmation for quick automated barrier verification.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <div class="feature-icon mb-3"><i class="bi bi-credit-card-2-front-fill"></i></div>
+          <h5 class="fw-bold">Digital Billing & Payments</h5>
+          <p class="text-muted-custom mb-0">Supports simulated UPI, Debit/Credit cards, GST service fee calculation, and downloadable official receipts.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <div class="feature-icon mb-3"><i class="bi bi-speedometer2"></i></div>
+          <h5 class="fw-bold">Driver Activity Dashboard</h5>
+          <p class="text-muted-custom mb-0">View current active parking sessions, track lifetime spend, download receipts, and manage bookings effortlessly.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <div class="feature-icon mb-3"><i class="bi bi-database-gear"></i></div>
+          <h5 class="fw-bold">Central SQLite DB Explorer</h5>
+          <p class="text-muted-custom mb-0">Integrated admin console displaying live database tables, slot occupancy charts, revenue statistics, and live test forms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-soft">
+  <div class="container">
+    <div class="panel p-4 p-lg-5">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-8">
+          <span class="badge badge-soft bg-soft text-primary mb-2">Shri Vaishnav Vidyapeeth Vishwavidyalaya • SVICA</span>
+          <h3 class="fw-bold">Live Unified One-Link Deployment</h3>
+          <p class="text-muted-custom mb-0">Both the dynamic Bootstrap frontend and the Python Flask REST API are served together seamlessly under a single cloud URL.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <a href="dashboard.html" class="btn btn-primary-custom me-2">Open Dashboard</a>
+          <a href="backend-dashboard.html" class="btn btn-outline-custom">Database Explorer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="brand-mark"><i class="bi bi-p-square-fill"></i></span>
+          <span class="text-white fw-bold fs-5">ParkEase</span>
+        </div>
+        <p class="mb-0 text-muted">Smart Parking Management System developed for MCA Minor Project (2026–2027), SVVV Indore.</p>
+      </div>
+      <div class="col-6 col-lg-3">
+        <h6 class="text-white">Navigation</h6>
+        <div class="d-flex flex-column gap-2 mt-3">
+          <a href="parking.html">Find Parking</a>
+          <a href="dashboard.html">User Dashboard</a>
+          <a href="history.html">Booking History</a>
+          <a href="backend-dashboard.html">Backend &amp; DB Console</a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4">
+        <h6 class="text-white">Credentials & Access</h6>
+        <div class="d-flex flex-column gap-2 mt-3">
+          <a href="login.html">Driver Demo (aarav@example.com)</a>
+          <a href="login.html">Admin Demo (admin@parkease.com)</a>
+          <a href="register.html">Create New Account</a>
+        </div>
+      </div>
+    </div>
+    <hr class="border-secondary my-4">
+    <div class="d-flex flex-wrap justify-content-between small text-muted">
+      <div>© <span data-year></span> ParkEase. Shri Vaishnav Institute of Computer Applications (SVICA).</div>
+      <div>Designed by Arnavi Jain, Atharv Mishra, Avani Jain, Ishan Tiwari.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/api.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

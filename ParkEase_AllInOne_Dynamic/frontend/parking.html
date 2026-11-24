@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Find Parking — ParkEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-custom">
+    <div class="container py-2 d-flex justify-content-between align-items-center">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-mark"><i class="bi bi-p-square-fill"></i></span>
+        <span class="brand-text">ParkEase</span>
+      </a>
+      <div id="navUserArea" class="d-flex gap-2">
+        <a href="dashboard.html" class="btn btn-outline-custom btn-sm">Dashboard</a>
+        <a href="index.html" class="btn btn-primary-custom btn-sm">Home</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="page-header">
+    <div class="container">
+      <div class="small-label">Real-Time Inventory</div>
+      <h1 class="fw-bold mt-2 mb-2">Find an available slot</h1>
+      <p class="text-muted-custom mb-0">Live slot occupancy powered by the central database.</p>
+    </div>
+  </section>
+
+  <main class="container py-4">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="panel mb-4">
+          <div class="row g-3">
+            <div class="col-md-5">
+              <label class="small-label mb-1">Select Facility</label>
+              <select id="locationSelect" class="form-select">
+                <option value="">Loading locations...</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="small-label mb-1">Reservation Date</label>
+              <input id="filterDate" type="date" class="form-control">
+            </div>
+            <div class="col-md-2">
+              <label class="small-label mb-1">Start Time</label>
+              <input id="filterTime" type="time" class="form-control">
+            </div>
+            <div class="col-md-2">
+              <label class="small-label mb-1">Duration</label>
+              <select id="filterDuration" class="form-select">
+                <option value="1">1 hr</option>
+                <option value="2" selected>2 hrs</option>
+                <option value="3">3 hrs</option>
+                <option value="4">4 hrs</option>
+                <option value="6">6 hrs</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-3">
+            <input id="slotSearch" class="form-control" placeholder="Search slot by number (e.g. A-01), EV, Car, or Bike...">
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+            <div>
+              <h5 class="fw-bold mb-1">Parking Slots Grid</h5>
+              <span id="zoneInfoText" class="small text-muted-custom">Loading available slots...</span>
+            </div>
+            <div class="small">
+              <span class="me-3"><span class="badge badge-soft badge-available">Available</span></span>
+              <span class="me-3"><span class="badge badge-soft badge-occupied">Occupied</span></span>
+              <span><span class="badge badge-soft badge-reserved">Reserved</span></span>
+            </div>
+          </div>
+          <div id="slotGrid" class="slot-grid">
+            <!-- Dynamically populated by app.js -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="panel sticky-lg-top" style="top:92px" id="slotSummary">
+          <!-- Dynamically populated by app.js -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
